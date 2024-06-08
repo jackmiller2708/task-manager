@@ -1,8 +1,8 @@
 import { RxJsonSchema } from 'rxdb';
 import { PRIORITY } from '@application/constants';
-import { ITask } from './_ITask.interface';
+import { ITaskEntity } from './_ITask.interface';
 
-export const TaskSchema: RxJsonSchema<ITask> = {
+export const TaskSchema: RxJsonSchema<ITaskEntity> = {
   version: 0,
   primaryKey: 'id',
   type: 'object',
@@ -10,6 +10,9 @@ export const TaskSchema: RxJsonSchema<ITask> = {
     id: { 
       type: 'string', 
       maxLength: 100 
+    },
+    title: {
+      type: 'string'
     },
     createdTime: { 
       type: 'string' 

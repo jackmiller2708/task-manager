@@ -5,15 +5,17 @@ import { isDevMode } from '@angular/core';
 import { Effect } from 'effect';
 
 export function databaseProviderFactory(schemas: { [name: string]:  RxJsonSchema<any>; }) {
+  const dbStorage = getRxStorageDexie()
+
   const enableDevMode = Effect.promise(() => import('rxdb/plugins/dev-mode')).pipe(
     Effect.map(({ RxDBDevModePlugin }) => addRxPlugin(RxDBDevModePlugin)),
     Effect.tap(() => addRxPlugin(RxDBMigrationPlugin)),
-    Effect.tap(() => removeRxDatabase('task-manager-storage', getRxStorageDexie())),
+    Effect.tap(() => removeRxDatabase('task-manager-storage',dbStorage )),
   );
 
   const createDatabase = Effect.promise(() => createRxDatabase({ 
-    name: 'task-manager-storage', storage: 
-    getRxStorageDexie(),
+    name: 'task-manager-storage', 
+    storage: dbStorage,
   }));
 
   return Effect.Do.pipe(
