@@ -10,7 +10,6 @@ export function databaseProviderFactory(schemas: { [name: string]:  RxJsonSchema
   const enableDevMode = Effect.promise(() => import('rxdb/plugins/dev-mode')).pipe(
     Effect.map(({ RxDBDevModePlugin }) => addRxPlugin(RxDBDevModePlugin)),
     Effect.tap(() => addRxPlugin(RxDBMigrationPlugin)),
-    Effect.tap(() => removeRxDatabase('task-manager-storage',dbStorage )),
   );
 
   const createDatabase = Effect.promise(() => createRxDatabase({ 
