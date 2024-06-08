@@ -22,6 +22,7 @@
     "ag-grid-angular": "^31.3.2",
     "effect": "^3.3.0",
     "immutable": "^4.3.6",
+    "rxdb": "^15.23.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
