@@ -1,16 +1,19 @@
-import { RxJsonSchema, addRxPlugin, createRxDatabase } from 'rxdb';
-import { getRxStorageDexie } from 'rxdb/dist/types/plugins/storage-dexie';
+import { RxJsonSchema, addRxPlugin, createRxDatabase, removeRxDatabase } from 'rxdb';
+import { RxDBMigrationPlugin } from 'rxdb/plugins/migration-schema';
+import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
 import { isDevMode } from '@angular/core';
 import { Effect } from 'effect';
 
 export function databaseProviderFactory(schemas: { [name: string]:  RxJsonSchema<any>; }) {
   const enableDevMode = Effect.promise(() => import('rxdb/plugins/dev-mode')).pipe(
-    Effect.map(({ RxDBDevModePlugin }) => addRxPlugin(RxDBDevModePlugin))
+    Effect.map(({ RxDBDevModePlugin }) => addRxPlugin(RxDBDevModePlugin)),
+    Effect.tap(() => addRxPlugin(RxDBMigrationPlugin)),
+    Effect.tap(() => removeRxDatabase('task-manager-storage', getRxStorageDexie())),
   );
 
   const createDatabase = Effect.promise(() => createRxDatabase({ 
     name: 'task-manager-storage', storage: 
-    getRxStorageDexie() 
+    getRxStorageDexie(),
   }));
 
   return Effect.Do.pipe(

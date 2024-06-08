@@ -5,7 +5,6 @@ import { ITask } from './_ITask.interface';
 export const TaskSchema: RxJsonSchema<ITask> = {
   version: 0,
   primaryKey: 'id',
-  keyCompression: true,
   type: 'object',
   properties: {
     id: { 
