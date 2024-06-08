@@ -1,22 +1,12 @@
-import { addRxPlugin, createRxDatabase } from 'rxdb';
-import { Provider, isDevMode } from '@angular/core';
-import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
+import { databaseProviderFactory } from './_database-provider.factory';
 import { APP_DATABASE } from './_database-provider.token';
+import { RxJsonSchema } from 'rxdb';
+import { Provider } from '@angular/core';
+import { Effect } from 'effect';
 
-export function provideDatabase(): Provider {
+export function provideDatabase(schemas: { [name: string]: RxJsonSchema<any>; }): Provider {
   return {
     provide: APP_DATABASE,
-    useFactory: async () => {
-      if (isDevMode()) {
-        await import('rxdb/plugins/dev-mode').then((module) =>
-          addRxPlugin(module.RxDBDevModePlugin)
-        );
-      }
-
-      return await createRxDatabase({
-        name: 'task-manager-storage',
-        storage: getRxStorageDexie(),
-      });
-    },
+    useFactory: () => Effect.runPromise(databaseProviderFactory(schemas)),
   };
 }
