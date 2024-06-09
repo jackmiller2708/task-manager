@@ -56,6 +56,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   private _onDataSourceUpdate(dataSource: Map<string, ITask>) {
     this._dataSource = dataSource.valueSeq().toArray();
+    console.log(this._dataSource)
     this._cdr.detectChanges();
   }
 

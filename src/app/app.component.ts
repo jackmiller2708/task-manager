@@ -1,7 +1,7 @@
 import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } from '@presentation/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { TaskInputModalComponent } from '@presentation/components/task-input-modal/task-input-modal.component';
-import { map, switchMap } from 'rxjs';
+import { orchestrateBulkDelete } from '@presentation/utitlity';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '@application/services/task/task.service';
 import { TaskActions } from '@presentation/stores';
@@ -9,6 +9,7 @@ import { List, Map } from 'immutable';
 import { Option } from 'effect';
 import { ITask } from '@application/models';
 import { Store } from '@ngrx/store';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -41,15 +42,11 @@ export class AppComponent implements OnInit {
     this._dialog
       .open(ConfirmModalComponent, { data: tasks })
       .afterClosed()
-      .pipe(
-        map((maybeIds: Option.Option<List<string>>) => Option.getOrElse(maybeIds, () => List<string>())),
-        switchMap((ids) => this._taskService.bulkDelete(ids)),
-        map((removedList) => removedList.map(({ id }) => id))
-      )
-      .subscribe({
+      .pipe(orchestrateBulkDelete(this._taskService))
+      .subscribe({ 
         next: (removedIds) => this._store.dispatch(
           TaskActions.bulkDeleteTask({ taskIds: removedIds })
-        )
+        ),
       });
   }
 }

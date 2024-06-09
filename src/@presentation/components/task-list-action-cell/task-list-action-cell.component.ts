@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { TaskInputModalComponent } from '../task-input-modal/task-input-modal.component';
 import { storeRegisterFactory } from '@presentation/utitlity';
 import { selectSelectedTasks } from '@presentation/stores';
 import { ICellRendererParams } from 'ag-grid-community';
@@ -7,12 +8,11 @@ import { Observable, Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { IAppState } from '@presentation/interfaces';
+import { MatDialog } from '@angular/material/dialog';
 import { Option } from 'effect';
 import { ITask } from '@application/models';
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
-import { MatDialog } from '@angular/material/dialog';
-import { TaskInputModalComponent } from '../task-input-modal/task-input-modal.component';
 
 @Component({
   selector: 'app-task-list-action-cell',

@@ -1,7 +1,7 @@
 import { ICellRendererAngularComp } from 'ag-grid-angular';
-import { Component } from '@angular/core';
 import { _getPriorityMatcher } from '@application/utility';
 import { ICellRendererParams } from 'ag-grid-community';
+import { Component } from '@angular/core';
 import { PRIORITY } from '@application/constants';
 
 import classNames from 'classnames';
@@ -16,15 +16,17 @@ export class PriorityBadgeComponent implements ICellRendererAngularComp {
   private _value?: PRIORITY;
 
   get priorityClass() {
-    return classNames('px-2 py-1 rounded-xl text-white', {
+    return classNames('flex rounded-xl text-white w-15 h-6 items-center justify-center', {
       'bg-[#198754]': this._value === PRIORITY.LOW,
       'bg-[#FFC107]': this._value === PRIORITY.MEDIUM,
-      'bg-[#DC3545]': this._value === PRIORITY.MEDIUM,
+      'bg-[#DC3545]': this._value === PRIORITY.HIGH,
     });
   }
 
   get value(): string | undefined {
-    return this._value ? this.match({ priority: this._value }) : undefined;
+    return this._value !== undefined
+      ? this.match({ priority: this._value })
+      : undefined;
   }
 
   constructor() {
