@@ -1,4 +1,4 @@
-<button mat-mini-fab color="primary" title="Edit Task" [disabled]="shouldDisableAction">
+<button mat-mini-fab color="primary" title="Edit Task" [disabled]="shouldDisableAction" (click)="onEditBtnClick()">
   <mat-icon aria-hidden="false" aria-label="Edit Task Icon" fontIcon="edit" />
 </button>
 <button mat-mini-fab color="warn" title="Delete Task" [disabled]="shouldDisableAction" >

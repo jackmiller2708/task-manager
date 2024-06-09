@@ -1,11 +1,11 @@
-<p class="text-2xl font-medium">Add Task</p>
-<form class="flex flex-col gap-2">
-  <mat-form-field >
+<p class="text-2xl font-medium">{{ actionName }} Task</p>
+<form class="flex flex-col gap-1">
+  <mat-form-field>
     <mat-label>Title</mat-label>
     <input required matInput>
   </mat-form-field>
   <div class="flex gap-2">
-    <mat-form-field >
+    <mat-form-field>
       <mat-label>Priority</mat-label>
       <mat-select required>
         <mat-option value="one">First option</mat-option>
@@ -20,8 +20,16 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </div>
-  <mat-form-field >
+  <mat-form-field>
     <mat-label>Description (optional)</mat-label>
     <textarea matInput></textarea>
   </mat-form-field>
+  <div class="flex justify-end gap-2">
+    <button mat-flat-button color="primary" aria-label="Submit Button" type="submit">
+      Submit
+    </button>
+    <button mat-stroked-button color="warn" aria-label="Cancel Button" type="button">
+      Cancel
+    </button>
+  </div>
 </form>

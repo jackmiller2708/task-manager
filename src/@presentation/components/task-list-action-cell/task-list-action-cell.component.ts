@@ -11,6 +11,8 @@ import { Option } from 'effect';
 import { ITask } from '@application/models';
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
+import { MatDialog } from '@angular/material/dialog';
+import { TaskInputModalComponent } from '../task-input-modal/task-input-modal.component';
 
 @Component({
   selector: 'app-task-list-action-cell',
@@ -32,7 +34,10 @@ export class TaskListActionCellComponent implements ICellRendererAngularComp, On
     return this._selectedTasks.size > 1;
   }
 
-  constructor(private readonly _store: Store<IAppState>) {
+  constructor(
+    private readonly _dialog: MatDialog,
+    private readonly _store: Store<IAppState>
+  ) {
     this._selectedTasks$ = this._store.select(selectSelectedTasks);
     this._onDestroy$ = new Subject();
     this._value = Option.none();
@@ -54,6 +59,10 @@ export class TaskListActionCellComponent implements ICellRendererAngularComp, On
   refresh(params: ICellRendererParams<any, any, any>): boolean {
     this._value = Option.some(params.data);
     return true;
+  }
+
+  onEditBtnClick() {
+    this._dialog.open(TaskInputModalComponent, { data: this._value });
   }
 
   private _onSelectedTasksChange(tasks: List<ITask>) {
