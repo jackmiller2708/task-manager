@@ -45,7 +45,6 @@ export class AppComponent implements OnInit {
       .open(ConfirmModalComponent, { data: tasks })
       .afterClosed()
       .pipe(
-        first(),
         map((maybeIds: Option.Option<List<string>>) => Option.getOrElse(maybeIds, () => List<string>())),
         switchMap((ids) => this._taskService.bulkDelete(ids)),
         map((removedList) => removedList.map(({ id }) => id))

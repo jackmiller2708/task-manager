@@ -1,7 +1,9 @@
 <ag-grid-angular
   class="ag-theme-quartz"
   rowSelection="multiple"
+  suppressRowClickSelection
   style="height: 500px"
+  [rowHeight]="60"
   [columnDefs]="colDefs"
   [rowData]="dataSource"
   (selectionChanged)="onSelectionChanged($event)"
