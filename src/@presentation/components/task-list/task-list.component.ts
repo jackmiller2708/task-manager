@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
+import { ColDef, SelectionChangedEvent } from 'ag-grid-community';
+import { TaskActions, selectTasks } from '@presentation/stores';
 import { storeRegisterFactory } from '@presentation/utitlity';
 import { Observable, Subject } from 'rxjs';
 import { TASK_LIST_COL_DEFS } from '@presentation/constants';
 import { AgGridAngular } from 'ag-grid-angular';
-import { selectTasks } from '@presentation/stores';
-import { ColDef } from 'ag-grid-community';
+import { IAppState } from '@presentation/interfaces';
+import { List, Map } from 'immutable';
 import { ITask } from '@application/models';
 import { Store } from '@ngrx/store';
-import { Map } from 'immutable';
 
 @Component({
   selector: 'app-task-list',
@@ -20,23 +21,23 @@ import { Map } from 'immutable';
 export class TaskListComponent implements OnInit, OnDestroy {
   private readonly _onDestroy$: Subject<void>;
   private readonly _tasks$: Observable<Map<string, ITask>>;
-  private _dataSource: Map<string, ITask>;
+  private _dataSource: ITask[];
 
   readonly colDefs: ColDef<ITask>[];
 
   get dataSource(): ITask[] {
-    return this._dataSource.valueSeq().toArray();
+    return this._dataSource;
   }
 
   constructor(
-    private readonly _store: Store,
+    private readonly _store: Store<IAppState>,
     private readonly _cdr: ChangeDetectorRef
   ) {
     this._onDestroy$ = new Subject();
     this._tasks$ = this._store.select(selectTasks);
 
     this.colDefs = TASK_LIST_COL_DEFS;
-    this._dataSource = Map();
+    this._dataSource = [];
   }
 
   ngOnInit(): void {
@@ -47,8 +48,14 @@ export class TaskListComponent implements OnInit, OnDestroy {
     this._onDestroy$.next();
   }
 
+  onSelectionChanged(event: SelectionChangedEvent<ITask>) {
+    this._store.dispatch(
+      TaskActions.selectTasks({ tasks: List(event.api.getSelectedRows()) })
+    );
+  }
+
   private _onDataSourceUpdate(dataSource: Map<string, ITask>) {
-    this._dataSource = dataSource;
+    this._dataSource = dataSource.valueSeq().toArray();
     this._cdr.detectChanges();
   }
 
