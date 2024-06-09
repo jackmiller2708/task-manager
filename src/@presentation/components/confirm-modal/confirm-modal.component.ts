@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { Option } from 'effect';
+import { ITask } from '@application/models';
+import { List } from 'immutable';
 
 @Component({
   selector: 'app-confirm-modal',
@@ -7,4 +11,21 @@ import { Component } from '@angular/core';
   templateUrl: './confirm-modal.component.html',
   styleUrl: './confirm-modal.component.scss',
 })
-export class ConfirmModalComponent {}
+export class ConfirmModalComponent {
+  get dataSource() {
+    return this._data;
+  }
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) private readonly _data: List<ITask>,
+    private readonly dialogRef: MatDialogRef<ConfirmModalComponent>
+  ) {}
+
+  onConfirmBtnClick() {
+    this.dialogRef.close(Option.some(this._data.map(({ id }) => id)));
+  }
+
+  onCancelBtnClick() {
+    this.dialogRef.close(Option.none());
+  }
+}

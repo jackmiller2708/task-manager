@@ -4,9 +4,9 @@ import { ITask, ITaskEntity } from '@application/models/task/_ITask.interface';
 import { DatabaseService } from '@core/services/database/database.service';
 import { RxCollection } from 'rxdb';
 import { Injectable } from '@angular/core';
+import { List, Map } from 'immutable';
 import { Option } from 'effect';
 import { Task } from '@application/models';
-import { List } from 'immutable';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
@@ -41,11 +41,18 @@ export class TaskService {
     return this.repo$.pipe(
       switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: id } } }).exec())),
       map((doc) => Option.fromNullable(doc)),
-      switchMap(maybeDoc => maybeDoc.pipe(
-        Option.map(doc => from(doc.remove()).pipe(map(removedDoc => Option.some(removedDoc)))), 
+      switchMap((maybeDoc) => maybeDoc.pipe(
+        Option.map((doc) => from(doc.remove()).pipe(map((removedDoc) => Option.some(removedDoc)))), 
         Option.getOrElse(() => of(Option.none())))
       ),
-      map(maybeDoc => maybeDoc.pipe(Option.map(Task.fromEntity)))
+      map((maybeDoc) => maybeDoc.pipe(Option.map(Task.fromEntity)))
+    );
+  }
+
+  bulkDelete(taskIds: List<string>): Observable<List<ITask>> {
+    return this.repo$.pipe(
+      switchMap((repo) => from(repo.find({ selector: { $or: taskIds.map((id) => ({ id })).toArray() } }).remove())),
+      map(collection => List(collection.map(doc => Task.fromEntity(doc.getLatest()._data)))),
     );
   }
 }

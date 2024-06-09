@@ -10,5 +10,6 @@ export const TaskActions = createActionGroup({
     'Add Task': props<Readonly<{ task: ITask }>>(),
     'Modify Task': props<Readonly<{ task: ITask }>>(),
     'Delete Task': props<Readonly<{ id: string }>>(),
+    'Bulk Delete Task': props<Readonly<{ taskIds: List<string> }>>()
   },
 });

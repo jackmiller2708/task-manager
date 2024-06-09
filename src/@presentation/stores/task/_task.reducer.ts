@@ -8,5 +8,6 @@ export const tasksReducer = createReducer(
   on(TaskActions.selectTasks, (state, { tasks }) => state.set('selectedTasks', tasks)),
   on(TaskActions.addTask, (state, { task }) => state.update('tasks', (_task) => _task.set(task.id, task))),
   on(TaskActions.modifyTask, (state, { task }) => state.update('tasks', (_task) => _task.set(task.id, task))),
-  on(TaskActions.deleteTask, (state, { id }) => state.update('tasks', (_task) => _task.remove(id)))
+  on(TaskActions.deleteTask, (state, { id }) => state.update('tasks', (_task) => _task.remove(id))),
+  on(TaskActions.bulkDeleteTask, (state, { taskIds }) => state.update('tasks', (_task) => taskIds.reduce((acc, item) => acc.remove(item), _task)))
 );

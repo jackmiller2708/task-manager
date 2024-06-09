@@ -1,6 +1,13 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { storeRegisterFactory } from '@presentation/utitlity';
+import { selectSelectedTasks } from '@presentation/stores';
+import { Observable, Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { IAppState } from '@presentation/interfaces';
+import { ITask } from '@application/models';
+import { Store } from '@ngrx/store';
+import { List } from 'immutable';
 
 @Component({
   selector: 'app-task-list-toolbar',
@@ -8,12 +15,51 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './task-list-toolbar.component.html',
   styleUrl: './task-list-toolbar.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskListToolbarComponent {
+export class TaskListToolbarComponent implements OnInit, OnDestroy {
+  private readonly _selectedTasks$: Observable<List<ITask>>;
+  private readonly _onDestroy$: Subject<void>;
+  private _selectedTasks: List<ITask>;
+
   @Output()
   readonly addBtnClick: EventEmitter<void>;
 
-  constructor() {
+  @Output()
+  readonly deleteBtnClick: EventEmitter<List<ITask>>;
+
+  get selectedTask() {
+    return this._selectedTasks;
+  }
+
+  constructor(
+    private readonly _store: Store<IAppState>,
+    private readonly _cdr: ChangeDetectorRef
+  ) {
+    this._selectedTasks$ = this._store.select(selectSelectedTasks);
+    this._onDestroy$ = new Subject();
+    this._selectedTasks = List();
+    
     this.addBtnClick = new EventEmitter();
+    this.deleteBtnClick = new EventEmitter();
+  }
+
+  ngOnInit(): void {
+    this._initStore();
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy$.next();
+  }
+
+  private _onSelectedTasksChange(tasks: List<ITask>) {
+    this._selectedTasks = tasks;
+    this._cdr.detectChanges();
+  }
+
+  private _initStore() {
+    const register = storeRegisterFactory.call(this, this._onDestroy$);
+
+    register(this._selectedTasks$, this._onSelectedTasksChange);
   }
 }
