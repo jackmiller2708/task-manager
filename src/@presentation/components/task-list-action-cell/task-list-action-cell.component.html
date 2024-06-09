@@ -1,6 +1,6 @@
-<button mat-mini-fab color="primary" title="Edit Task">
+<button mat-mini-fab color="primary" title="Edit Task" [disabled]="shouldDisableAction">
   <mat-icon aria-hidden="false" aria-label="Edit Task Icon" fontIcon="edit" />
 </button>
-<button mat-mini-fab color="warn" title="Delete Task" [disabled]="shouldDisableDelete" >
+<button mat-mini-fab color="warn" title="Delete Task" [disabled]="shouldDisableAction" >
   <mat-icon aria-hidden="false" aria-label="Delete Task Icon" fontIcon="delete" />
 </button>

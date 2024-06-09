@@ -1,6 +1,7 @@
-import { ConfirmModalComponent, TaskCreateModalComponent, TaskListComponent, TaskListToolbarComponent } from '@presentation/components';
+import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } from '@presentation/components';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { first, map, switchMap } from 'rxjs';
+import { TaskInputModalComponent } from '@presentation/components/task-input-modal/task-input-modal.component';
+import { map, switchMap } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '@application/services/task/task.service';
 import { TaskActions } from '@presentation/stores';
@@ -14,13 +15,7 @@ import { Store } from '@ngrx/store';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   standalone: true,
-  imports: [
-    MatDialogModule,
-    TaskCreateModalComponent,
-    ConfirmModalComponent,
-    TaskListComponent,
-    TaskListToolbarComponent,
-  ],
+  imports: [MatDialogModule, TaskListComponent, TaskListToolbarComponent],
 })
 export class AppComponent implements OnInit {
   constructor(
@@ -33,11 +28,13 @@ export class AppComponent implements OnInit {
     this._taskService
       .findAll()
       .pipe(map((list) => list.reduce((acc, item) => acc.set(item.id, item), Map<string, ITask>())))
-      .subscribe({ next: tasks => this._store.dispatch(TaskActions.populateTasks({ tasks })) });
+      .subscribe({
+        next: (tasks) => this._store.dispatch(TaskActions.populateTasks({ tasks })),
+      });
   }
 
   onAddBtnClick() {
-    this._dialog.open(TaskCreateModalComponent);
+    this._dialog.open(TaskInputModalComponent, { data: Option.none() });
   }
 
   onDeleteBtnClick(tasks: List<ITask>) {
@@ -52,7 +49,7 @@ export class AppComponent implements OnInit {
       .subscribe({
         next: (removedIds) => this._store.dispatch(
           TaskActions.bulkDeleteTask({ taskIds: removedIds })
-        ),
+        )
       });
   }
 }

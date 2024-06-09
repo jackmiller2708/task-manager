@@ -1,16 +1,16 @@
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
+import { storeRegisterFactory } from '@presentation/utitlity';
 import { selectSelectedTasks } from '@presentation/stores';
 import { ICellRendererParams } from 'ag-grid-community';
+import { Observable, Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Observable, Subject } from 'rxjs';
 import { IAppState } from '@presentation/interfaces';
-import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Option } from 'effect';
 import { ITask } from '@application/models';
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
-import { storeRegisterFactory } from '@presentation/utitlity';
 
 @Component({
   selector: 'app-task-list-action-cell',
@@ -28,7 +28,7 @@ export class TaskListActionCellComponent implements ICellRendererAngularComp, On
   private _value: Option.Option<ITask>;
   private _selectedTasks: List<ITask>;
 
-  get shouldDisableDelete() {
+  get shouldDisableAction() {
     return this._selectedTasks.size > 1;
   }
 

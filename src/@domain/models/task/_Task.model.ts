@@ -1,38 +1,38 @@
 import { ConstructableValuesOf, RawObjOf } from '@core/interfaces';
-import { Dayjs, default as dayjs } from 'dayjs';
 import { ITask, ITaskEntity } from './_ITask.interface';
 import { PRIORITY } from '@application/constants';
+import { DateTime } from 'luxon';
 
 export class Task implements ITask {
   readonly id: string;
   readonly title: string;
   readonly description: string;
-  readonly dueDate: Dayjs;
-  readonly createdTime: Dayjs;
+  readonly dueDate: DateTime;
+  readonly createdTime: DateTime;
   readonly priority: PRIORITY;
 
   constructor(values?: ConstructableValuesOf<ITask>) {
     this.id = values?.id ?? Date.now().toString();
     this.title = values?.title ?? '';
     this.description = values?.description ?? '';
-    this.dueDate = values?.dueDate ?? dayjs();
-    this.createdTime = values?.createdTime ?? dayjs();
+    this.dueDate = values?.dueDate ?? DateTime.now();
+    this.createdTime = values?.createdTime ?? DateTime.now();
     this.priority = values?.priority ?? PRIORITY.MEDIUM;
   }
 
   static fromEntity(values?: Partial<Readonly<RawObjOf<ITaskEntity>>>) {
     return new Task({
       ...values,
-      dueDate: dayjs(values?.dueDate),
-      createdTime: dayjs(values?.createdTime),
+      dueDate: DateTime.fromISO(values?.dueDate ?? new Date().toISOString()),
+      createdTime: DateTime.fromISO(values?.createdTime ?? new Date().toISOString()),
     });
   }
 
   toEntity(): Readonly<RawObjOf<ITaskEntity>> {
     return {
       ...this,
-      dueDate: this.dueDate.toISOString(),
-      createdTime: this.createdTime.toISOString(),
+      dueDate: this.dueDate.toISO(),
+      createdTime: this.createdTime.toISO(),
     };
   }
 }

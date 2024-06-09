@@ -1,6 +1,6 @@
 import { IEntity, IEntityConvertible } from '@core/interfaces';
 import { PRIORITY } from '@application/constants';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 export interface ITaskEntity extends IEntity {
   title: string;
@@ -13,7 +13,7 @@ export interface ITask extends IEntityConvertible<ITaskEntity> {
   id: string;
   title: string;
   description: string;
-  createdTime: Dayjs;
-  dueDate: Dayjs;
+  createdTime: DateTime;
+  dueDate: DateTime;
   priority: PRIORITY;
 }

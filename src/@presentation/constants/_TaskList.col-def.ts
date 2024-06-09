@@ -3,7 +3,7 @@ import { PriorityBadgeComponent } from '@presentation/components/priority-badge/
 import { _getPriorityMatcher } from '@application/utility';
 import { ColDef } from 'ag-grid-community';
 import { ITask } from '@application/models';
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon';
 
 export const TASK_LIST_COL_DEFS: ColDef<ITask>[] = [
   {
@@ -36,8 +36,7 @@ export const TASK_LIST_COL_DEFS: ColDef<ITask>[] = [
     field: 'dueDate',
     resizable: false,
     cellClass: 'flex flex-col justify-center',
-    valueFormatter: ({ value }) =>
-      (value as Dayjs).format('ddd MM YYYY HH:mm:ss'),
+    valueFormatter: ({ value }) => (value as DateTime).toFormat('DD'),
   },
   {
     headerName: 'Actions',

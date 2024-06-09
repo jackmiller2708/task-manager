@@ -1,3 +1,5 @@
+import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { ApplicationConfig } from '@angular/core';
 import { provideDatabase } from '@core/providers/database';
 import { provideRouter } from '@angular/router';
@@ -11,5 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({ tasks: tasksReducer }),
     provideDatabase(schemas),
+    provideAnimations(),
+    provideLuxonDateAdapter()
   ],
 };

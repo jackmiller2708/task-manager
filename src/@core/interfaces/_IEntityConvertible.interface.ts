@@ -1,4 +1,4 @@
-import { Dayjs } from 'dayjs';
+import { DateTime } from 'luxon'
 import { Option } from 'effect/Option';
 import { List } from 'immutable';
 
@@ -16,7 +16,7 @@ export type RawObjOf<T> = {
       ? RawObjOf<M>
       : T[K] extends List<infer L>
       ? ReadonlyArray<RawObjOf<L>>
-      : T[K] extends Dayjs
+      : T[K] extends DateTime
       ? string
       : T[K]
   >;

@@ -1,0 +1,27 @@
+<p class="text-2xl font-medium">Add Task</p>
+<form class="flex flex-col gap-2">
+  <mat-form-field >
+    <mat-label>Title</mat-label>
+    <input required matInput>
+  </mat-form-field>
+  <div class="flex gap-2">
+    <mat-form-field >
+      <mat-label>Priority</mat-label>
+      <mat-select required>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input required matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <mat-form-field >
+    <mat-label>Description (optional)</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+</form>
