@@ -1,4 +1,4 @@
-import { Observable, from, map, of, switchMap } from 'rxjs';
+import { Observable, first, from, map, of, switchMap } from 'rxjs';
 import { AppEntityCollection } from '@application/models/_schema';
 import { ITask, ITaskEntity } from '@application/models/task/_ITask.interface';
 import { DatabaseService } from '@core/services/database/database.service';
@@ -13,7 +13,7 @@ export class TaskService {
   private readonly repo$: Observable<RxCollection<ITaskEntity>>;
 
   constructor(private readonly dbService: DatabaseService<AppEntityCollection>) {
-    this.repo$ = dbService.db$.pipe(map((db) => db.task));
+    this.repo$ = dbService.db$.pipe(map((db) => db.task), first());
   }
 
   findAll(): Observable<List<ITask>> {

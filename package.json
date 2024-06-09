@@ -22,6 +22,7 @@
     "@angular/router": "^17.3.0",
     "@ngrx/store": "^17.2.0",
     "ag-grid-angular": "^31.3.2",
+    "classnames": "^2.5.1",
     "dayjs": "^1.11.11",
     "effect": "^3.3.0",
     "immutable": "^4.3.6",
