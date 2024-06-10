@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon'
+import { DateTime } from 'luxon';
 import { Option } from 'effect/Option';
 import { List } from 'immutable';
 
