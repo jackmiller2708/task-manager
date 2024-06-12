@@ -7,14 +7,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { TaskService } from '@application/services/task/task.service';
+import { TaskActions } from '@presentation/stores';
+import { ITask, Task } from '@application/models';
 import { IAppState } from '@presentation/interfaces';
+import { DialogRef } from '@angular/cdk/dialog';
 import { PRIORITY } from '@application/constants';
 import { DateTime } from 'luxon';
 import { Option } from 'effect';
-import { ITask, Task } from '@application/models';
 import { Store } from '@ngrx/store';
-import { TaskActions } from '@presentation/stores';
-import { DialogRef } from '@angular/cdk/dialog';
 
 const imports = [
   MatInputModule,
@@ -73,7 +73,7 @@ export class TaskInputModalComponent {
 
   private _submit(formValue: Partial<ITask>) {
     return Option.match(this._data, {
-      onSome: (data) => this._taskService.update(new Task(({ ...data, ...formValue } as any))),
+      onSome: (data) => this._taskService.update(new Task(({ ...data, ...formValue }))),
       onNone: () => this._taskService.add(new Task(formValue)),
     });
   }

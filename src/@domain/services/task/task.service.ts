@@ -34,7 +34,7 @@ export class TaskService {
     const { id, ...updateData } = task.toEntity();
 
     return this.repo$.pipe(
-      switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: task.id }} }).patch(updateData))),
+      switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: id }} }).patch(updateData))),
       map(Option.fromNullable),
       map(maybeDoc => maybeDoc.pipe(Option.map(doc => Task.fromEntity(doc.getLatest()._data)), Option.getOrThrow))
     );

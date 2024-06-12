@@ -3,6 +3,7 @@ import { _getPriorityMatcher } from '@application/utility';
 import { ICellRendererParams } from 'ag-grid-community';
 import { Component } from '@angular/core';
 import { PRIORITY } from '@application/constants';
+import { Option } from 'effect';
 
 import classNames from 'classnames';
 
@@ -24,9 +25,10 @@ export class PriorityBadgeComponent implements ICellRendererAngularComp {
   }
 
   get value(): string | undefined {
-    return this._value !== undefined
-      ? this.match({ priority: this._value })
-      : undefined;
+    return Option.fromNullable(this._value).pipe(
+      Option.map((priority) => this.match({ priority })),
+      Option.getOrUndefined
+    );
   }
 
   constructor() {
