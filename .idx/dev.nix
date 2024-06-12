@@ -8,7 +8,7 @@
     "angular.ng-template"
   ];
   idx.workspace.onCreate = {
-    npm-install = "bun install";
+    bun-install = "bun install";
   };
   idx.previews = {
     previews = {
