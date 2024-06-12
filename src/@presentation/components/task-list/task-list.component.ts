@@ -1,13 +1,19 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
-import { ColDef, SelectionChangedEvent } from 'ag-grid-community';
+import type { ColDef, SelectionChangedEvent } from 'ag-grid-community';
+import type { Map as ImmutableMap } from "immutable";
+import type { OnDestroy, OnInit } from '@angular/core'
+import type { Observable } from 'rxjs';
+import type { IAppState } from '@presentation/interfaces';
+import type { ITask } from '@application/models';
+
+// biome-ignore lint/style/useImportType: Need for injection
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { TaskActions, selectTasks } from '@presentation/stores';
 import { storeRegisterFactory } from '@presentation/utitlity';
-import { Observable, Subject } from 'rxjs';
 import { TASK_LIST_COL_DEFS } from '@presentation/constants';
 import { AgGridAngular } from 'ag-grid-angular';
-import { IAppState } from '@presentation/interfaces';
-import { List, Map } from 'immutable';
-import { ITask } from '@application/models';
+import { Subject } from 'rxjs';
+import { List } from 'immutable';
+// biome-ignore lint/style/useImportType: Need for injection
 import { Store } from '@ngrx/store';
 
 @Component({
@@ -20,7 +26,7 @@ import { Store } from '@ngrx/store';
 })
 export class TaskListComponent implements OnInit, OnDestroy {
   private readonly _onDestroy$: Subject<void>;
-  private readonly _tasks$: Observable<Map<string, ITask>>;
+  private readonly _tasks$: Observable<ImmutableMap<string, ITask>>;
   private _dataSource: ITask[];
 
   readonly colDefs: ColDef<ITask>[];
@@ -54,7 +60,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     );
   }
 
-  private _onDataSourceUpdate(dataSource: Map<string, ITask>) {
+  private _onDataSourceUpdate(dataSource: ImmutableMap<string, ITask>) {
     this._dataSource = dataSource.valueSeq().toArray();
     this._cdr.detectChanges();
   }

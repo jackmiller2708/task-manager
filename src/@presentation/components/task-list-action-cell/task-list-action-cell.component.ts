@@ -1,16 +1,21 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
+import type { ICellRendererAngularComp } from 'ag-grid-angular';
+import type { ICellRendererParams } from 'ag-grid-community';
+import type { OnDestroy, OnInit } from '@angular/core';
+import type { Observable } from 'rxjs';
+import type { IAppState } from '@presentation/interfaces';
+import type { ITask } from '@application/models';
+
 import { TaskInputModalComponent } from '../task-input-modal/task-input-modal.component';
 import { storeRegisterFactory } from '@presentation/utitlity';
 import { selectSelectedTasks } from '@presentation/stores';
-import { ICellRendererParams } from 'ag-grid-community';
-import { Observable, Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IAppState } from '@presentation/interfaces';
+// biome-ignore lint/style/useImportType: Need for injection
 import { MatDialog } from '@angular/material/dialog';
+import { Component } from "@angular/core";
+import { Subject } from 'rxjs'
 import { Option } from 'effect';
-import { ITask } from '@application/models';
+// biome-ignore lint/style/useImportType: Need for injection
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
 
@@ -52,11 +57,11 @@ export class TaskListActionCellComponent implements ICellRendererAngularComp, On
     this._onDestroy$.next()
   }
 
-  agInit(params: ICellRendererParams<any, any, any>): void {
+  agInit(params: ICellRendererParams): void {
     this._value = Option.some(params.data);
   }
 
-  refresh(params: ICellRendererParams<any, any, any>): boolean {
+  refresh(params: ICellRendererParams): boolean {
     this._value = Option.some(params.data);
     return true;
   }

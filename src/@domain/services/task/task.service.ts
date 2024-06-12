@@ -1,19 +1,22 @@
-import { Observable, first, from, map, of, switchMap } from 'rxjs';
-import { AppEntityCollection } from '@application/models/_schema';
-import { ITask, ITaskEntity } from '@application/models/task/_ITask.interface';
+import type { AppEntityCollection } from '@application/models/_schema';
+import type { ITask, ITaskEntity } from '@application/models/task/_ITask.interface';
+import type { RxCollection } from 'rxdb';
+import type { Observable } from 'rxjs';
+
+import {  first, from, map, of, switchMap } from 'rxjs';
+// biome-ignore lint/style/useImportType: Needed for token injection.
 import { DatabaseService } from '@core/services/database/database.service';
-import { RxCollection } from 'rxdb';
 import { Injectable } from '@angular/core';
-import { List, Map } from 'immutable';
 import { Option } from 'effect';
 import { Task } from '@application/models';
+import { List } from 'immutable';
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
   private readonly repo$: Observable<RxCollection<ITaskEntity>>;
 
-  constructor(private readonly dbService: DatabaseService<AppEntityCollection>) {
-    this.repo$ = dbService.db$.pipe(map((db) => db.task), first());
+  constructor(private readonly _dbService: DatabaseService<AppEntityCollection>) {
+    this.repo$ = this._dbService.db$.pipe(map((db) => db.task), first());
   }
 
   findAll(): Observable<List<ITask>> {

@@ -1,20 +1,26 @@
-import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } from '@presentation/components';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { TaskInputModalComponent } from '@presentation/components/task-input-modal/task-input-modal.component';
-import { orchestrateBulkDelete } from '@presentation/utitlity';
-import { Component, OnInit } from '@angular/core';
-import { TaskService } from '@application/services/task/task.service';
-import { TaskActions } from '@presentation/stores';
-import { List, Map } from 'immutable';
-import { Option } from 'effect';
-import { ITask } from '@application/models';
-import { Store } from '@ngrx/store';
-import { map } from 'rxjs';
+import type { OnInit } from "@angular/core";
+import type { ITask } from "@application/models";
+import type { List } from "immutable";
+
+import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } from "@presentation/components";
+// biome-ignore lint/style/useImportType: Need for injection
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { TaskInputModalComponent } from "@presentation/components/task-input-modal/task-input-modal.component";
+import { orchestrateBulkDelete } from "@presentation/utitlity";
+import { Map as ImmutableMap } from "immutable";
+// biome-ignore lint/style/useImportType: Need for injection
+import { TaskService } from "@application/services/task/task.service";
+import { TaskActions } from "@presentation/stores";
+import { Component } from "@angular/core";
+import { Option } from "effect";
+// biome-ignore lint/style/useImportType: Need for injection
+import { Store } from "@ngrx/store";
+import { map } from "rxjs";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss",
   standalone: true,
   imports: [MatDialogModule, TaskListComponent, TaskListToolbarComponent],
 })
@@ -22,15 +28,21 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly _dialog: MatDialog,
     private readonly _store: Store,
-    private readonly _taskService: TaskService
+    private readonly _taskService: TaskService,
   ) {}
 
   ngOnInit(): void {
     this._taskService
       .findAll()
-      .pipe(map((list) => list.reduce((acc, item) => acc.set(item.id, item), Map<string, ITask>())))
+      .pipe(
+        map((list) => list.reduce(
+          (acc, item) => acc.set(item.id, item),
+          ImmutableMap<string, ITask>(),
+        )),
+      )
       .subscribe({
-        next: (tasks) => this._store.dispatch(TaskActions.populateTasks({ tasks })),
+        next: (tasks) =>
+          this._store.dispatch(TaskActions.populateTasks({ tasks })),
       });
   }
 
@@ -43,9 +55,9 @@ export class AppComponent implements OnInit {
       .open(ConfirmModalComponent, { data: tasks })
       .afterClosed()
       .pipe(orchestrateBulkDelete(this._taskService))
-      .subscribe({ 
+      .subscribe({
         next: (removedIds) => this._store.dispatch(
-          TaskActions.bulkDeleteTask({ taskIds: removedIds })
+          TaskActions.bulkDeleteTask({ taskIds: removedIds }),
         ),
       });
   }

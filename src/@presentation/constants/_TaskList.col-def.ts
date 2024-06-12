@@ -1,9 +1,10 @@
+import type { DateTime } from 'luxon';
+import type { ColDef } from 'ag-grid-community';
+import type { ITask } from '@application/models';
+
 import { TaskListActionCellComponent } from '@presentation/components/task-list-action-cell/task-list-action-cell.component';
 import { PriorityBadgeComponent } from '@presentation/components/priority-badge/priority-badge.component';
 import { _getPriorityMatcher } from '@application/utility';
-import { ColDef } from 'ag-grid-community';
-import { ITask } from '@application/models';
-import { DateTime } from 'luxon';
 
 export const TASK_LIST_COL_DEFS: ColDef<ITask>[] = [
   {

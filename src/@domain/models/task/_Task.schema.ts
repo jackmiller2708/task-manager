@@ -1,6 +1,7 @@
-import { RxJsonSchema } from 'rxdb';
+import type { RxJsonSchema } from 'rxdb';
+import type { ITaskEntity } from './_ITask.interface';
+
 import { PRIORITY } from '@application/constants';
-import { ITaskEntity } from './_ITask.interface';
 
 export const TaskSchema: RxJsonSchema<ITaskEntity> = {
   version: 0,

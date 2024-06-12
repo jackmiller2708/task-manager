@@ -1,6 +1,6 @@
-import { IEntity, IEntityConvertible } from '@core/interfaces';
-import { PRIORITY } from '@application/constants';
-import { DateTime } from 'luxon';
+import type { IEntity, IEntityConvertible } from '@core/interfaces';
+import type { PRIORITY } from '@application/constants';
+import type { DateTime } from 'luxon';
 
 export interface ITaskEntity extends IEntity {
   title: string;

@@ -1,4 +1,4 @@
-import { RxJsonSchema, addRxPlugin, createRxDatabase, removeRxDatabase } from 'rxdb';
+import { type RxJsonSchema, addRxPlugin, createRxDatabase, removeRxDatabase } from 'rxdb';
 import { RxDBMigrationPlugin } from 'rxdb/plugins/migration-schema';
 import { getRxStorageDexie } from 'rxdb/plugins/storage-dexie';
 import { isDevMode } from '@angular/core';

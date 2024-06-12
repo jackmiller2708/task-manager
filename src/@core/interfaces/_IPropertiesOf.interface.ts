@@ -1,4 +1,4 @@
 export type PropertiesOf<T> = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // biome-ignore lint/complexity/noBannedTypes: If it's a fucntion, ignores it.
   [K in keyof T as T[K] extends Function ? never : K]: T[K];
 };

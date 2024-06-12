@@ -1,11 +1,12 @@
+import type { List, Map as ImmutableMap } from 'immutable';
+import type { ITask } from '@application/models';
+
 import { createActionGroup, props } from '@ngrx/store';
-import { List, Map } from 'immutable';
-import { ITask } from '@application/models';
 
 export const TaskActions = createActionGroup({
   source: 'Tasks',
   events: {
-    'Populate Tasks': props<Readonly<{ tasks: Map<string, ITask> }>>(),
+    'Populate Tasks': props<Readonly<{ tasks: ImmutableMap<string, ITask> }>>(),
     'Select Tasks': props<Readonly<{ tasks: List<ITask> }>>(),
     'Add Task': props<Readonly<{ task: ITask }>>(),
     'Modify Task': props<Readonly<{ task: ITask }>>(),

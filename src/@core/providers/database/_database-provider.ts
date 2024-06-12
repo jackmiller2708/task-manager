@@ -1,7 +1,7 @@
 import { databaseProviderFactory } from './_database-provider.factory';
 import { APP_DATABASE } from './_database-provider.token';
-import { RxJsonSchema } from 'rxdb';
-import { Provider } from '@angular/core';
+import type { RxJsonSchema } from 'rxdb';
+import type { Provider } from '@angular/core';
 import { Effect } from 'effect';
 
 export function provideDatabase(schemas: { [name: string]: RxJsonSchema<any>; }): Provider {

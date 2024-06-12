@@ -1,4 +1,4 @@
-import { PropertiesOf } from './_IPropertiesOf.interface';
+import type { PropertiesOf } from './_IPropertiesOf.interface';
 
 /**
  * Represents the constructable values of an object type T, where the properties are optional.

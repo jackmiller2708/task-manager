@@ -1,5 +1,6 @@
-import { ConstructableValuesOf, RawObjOf } from '@core/interfaces';
-import { ITask, ITaskEntity } from './_ITask.interface';
+import type { ConstructableValuesOf, RawObjOf } from '@core/interfaces';
+import type { ITask, ITaskEntity } from './_ITask.interface';
+
 import { PRIORITY } from '@application/constants';
 import { DateTime } from 'luxon';
 

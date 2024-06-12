@@ -7,6 +7,9 @@
 		"formatter": {
 			"indentStyle": "space",
 			"indentWidth": 2
+		},
+		"parser": {
+			"unsafeParameterDecoratorsEnabled": true
 		}
 	},
 	"linter": {

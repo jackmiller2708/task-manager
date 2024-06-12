@@ -1,6 +1,7 @@
-import { ICellRendererAngularComp } from 'ag-grid-angular';
+import type { ICellRendererAngularComp } from 'ag-grid-angular';
+import type { ICellRendererParams } from 'ag-grid-community';
+
 import { _getPriorityMatcher } from '@application/utility';
-import { ICellRendererParams } from 'ag-grid-community';
 import { Component } from '@angular/core';
 import { PRIORITY } from '@application/constants';
 import { Option } from 'effect';
@@ -35,11 +36,11 @@ export class PriorityBadgeComponent implements ICellRendererAngularComp {
     this.match = _getPriorityMatcher();
   }
 
-  agInit(params: ICellRendererParams<any, any, any>): void {
+  agInit(params: ICellRendererParams): void {
     this._value = params.value;
   }
 
-  refresh(params: ICellRendererParams<any, any, any>): boolean {
+  refresh(params: ICellRendererParams): boolean {
     this._value = params.value;
     return true;
   }

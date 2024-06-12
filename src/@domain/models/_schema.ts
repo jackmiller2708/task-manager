@@ -1,4 +1,4 @@
-import { IEntityCollection } from '@core/interfaces';
+import type { IEntityCollection } from '@core/interfaces';
 import { TaskSchema } from './task/_Task.schema';
 
 export const schemas = {

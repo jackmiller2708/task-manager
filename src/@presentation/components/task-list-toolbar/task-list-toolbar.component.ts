@@ -1,11 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import type { OnDestroy, OnInit } from '@angular/core'
+import type { Observable } from 'rxjs';
+import type { IAppState } from '@presentation/interfaces';
+import type { ITask } from '@application/models';
+
+// biome-ignore lint/style/useImportType: Need for injection
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { storeRegisterFactory } from '@presentation/utitlity';
 import { selectSelectedTasks } from '@presentation/stores';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { IAppState } from '@presentation/interfaces';
-import { ITask } from '@application/models';
+// biome-ignore lint/style/useImportType: Need for injection
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
 

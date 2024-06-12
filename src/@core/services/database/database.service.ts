@@ -1,5 +1,6 @@
-import { BehaviorSubject, Observable, filter, from, switchMap } from 'rxjs';
-import { CollectionsOfDatabase, RxDatabase } from 'rxdb';
+import type { CollectionsOfDatabase, RxDatabase } from 'rxdb';
+
+import { BehaviorSubject, type Observable, filter, from } from 'rxjs';
 import { Injectable, inject } from '@angular/core';
 import { Effect, Schedule } from 'effect';
 import { APP_DATABASE } from '@core/providers/database';
@@ -19,8 +20,8 @@ export class DatabaseService<T extends CollectionsOfDatabase> {
       })),
       effect => Effect.retry(effect, Schedule.fixed('100 millis')),
       Effect.runPromise
-    )).subscribe({ next: db => dbSubject$.next(db as any) });
+    )).subscribe({ next: db => dbSubject$.next(db as unknown as RxDatabase<T>) });
 
-    this.db$ = dbSubject$.asObservable().pipe(filter(db => Boolean(db))) as any;
+    this.db$ = dbSubject$.asObservable().pipe(filter(db => Boolean(db))) as Observable<RxDatabase<T>>;
   }
 }
