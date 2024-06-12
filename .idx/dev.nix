@@ -6,6 +6,8 @@
   ];
   idx.extensions = [
     "angular.ng-template"
+    "biomejs.biome"
+    "monokai.theme-monokai-pro-vscode"
   ];
   idx.workspace.onCreate = {
     bun-install = "bun install";
