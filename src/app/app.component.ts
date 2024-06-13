@@ -34,15 +34,9 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this._taskService
       .findAll()
-      .pipe(
-        map((list) => list.reduce(
-          (acc, item) => acc.set(item.id, item),
-          ImmutableMap<string, ITask>(),
-        )),
-      )
+      .pipe(map((list) => list.reduce((acc, item) => acc.set(item.id, item), ImmutableMap<string, ITask>())))
       .subscribe({
-        next: (tasks) =>
-          this._store.dispatch(TaskActions.populateTasks({ tasks })),
+        next: (tasks) => this._store.dispatch(TaskActions.populateTasks({ tasks })),
       });
   }
 
