@@ -71,9 +71,9 @@ bun start
 This will initiate the dev server at `port 4200`.
 
 <div align="center">
-  <h1 style="font-weight: medium; font-size: 1.3rem">
+  <h3 style="font-weight: medium; font-size: 1.3rem">
     Wanna give it a try?
-  </h1>
+  </h3>
   <a href="https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fjackmiller2708%2Ftask-manager">
     <img height="32" alt="Open in IDX" src="https://cdn.idx.dev/btn/open_dark_32.svg">
   </a>
