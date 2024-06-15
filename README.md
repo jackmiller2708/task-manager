@@ -9,6 +9,10 @@ This is a demo to showcase the implementations of various design patterns includ
 
 For the purpose of experimentation and analysis to have a better understanding of their benefits and limitations. This acts as the scope of the project.
 
+## Disclaimer
+
+Please keep in mind that this project in all of its entirety is for the purpose of experimentation and analysis, it is by no means should be considered to be an example that should be used to follow as the understanding and implementation of some patterns if not all could be wrong.
+
 ## Prerequisites
 
 Before jumping into the code there are a few requirements that is expected and assumed to already have to be able to understand what's going on since this is rather a somewhat advance topic:
@@ -20,7 +24,7 @@ Before jumping into the code there are a few requirements that is expected and a
 
 ## Specifications
 
-This project's foundation is built upon the strict rule of immutability even tho Angular's inner mechanisms promote and encourage the use of mutable objects thru the principles of OOP. In other words, every object and process which are created throughout the application are immutable where it makes sense. But cloning objects is a very expensive operation and vanilla JavaScript is not built to support the use of immutability so in order to achieve it, data structures are required. 
+This project's foundation is built upon the strict rule of immutability even tho Angular's inner mechanisms promote and encourage the use of mutable objects thru the principles of OOP. In other words, every object and process which are of the application and created throughout the application will only be immutable where it makes sense. Moreover, cloning objects by copying over property values is very expensive and vanilla JavaScript is not built to support the use of immutability so in order to achieve it, some data structures are required.
 
 This project's core mechanisms rely on three libraries:
 
