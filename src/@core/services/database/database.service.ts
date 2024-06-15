@@ -1,9 +1,10 @@
 import type { CollectionsOfDatabase, RxDatabase } from 'rxdb';
 
-import { BehaviorSubject, type Observable, filter, from } from 'rxjs';
+import { dbInstanceResolver } from '@core/resolvers';
 import { Injectable, inject } from '@angular/core';
-import { Effect, Schedule } from 'effect';
 import { APP_DATABASE } from '@core/providers/database';
+import { Observable } from 'rxjs';
+import { Effect } from 'effect';
 
 @Injectable({ providedIn: 'root' })
 export class DatabaseService<T extends CollectionsOfDatabase> {
@@ -11,17 +12,11 @@ export class DatabaseService<T extends CollectionsOfDatabase> {
 
   constructor() {
     const awaitingDbInstance = inject(APP_DATABASE);
-    const dbSubject$ = new BehaviorSubject<RxDatabase<T> | undefined>(undefined);
 
-    from(Effect.promise(() => awaitingDbInstance).pipe(
-      Effect.flatMap(db => Effect.if(Boolean(Object.keys(db.collections).length), {
-        onTrue: () => Effect.succeed(db),
-        onFalse: () => Effect.fail('Db not initialized!')
-      })),
-      effect => Effect.retry(effect, Schedule.fixed('100 millis')),
-      Effect.runPromise
-    )).subscribe({ next: db => dbSubject$.next(db as unknown as RxDatabase<T>) });
-
-    this.db$ = dbSubject$.asObservable().pipe(filter(db => Boolean(db))) as Observable<RxDatabase<T>>;
+    this.db$ = new Observable<RxDatabase<T>>(subscriber => {
+      Effect.runPromise(dbInstanceResolver(awaitingDbInstance))
+        .then((dbInstance) => subscriber.next(dbInstance as unknown as RxDatabase<T>))
+        .catch((error) => subscriber.error(error));
+    });
   }
 }

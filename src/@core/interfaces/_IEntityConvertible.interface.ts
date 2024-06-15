@@ -9,7 +9,7 @@ export interface IEntityConvertible<T> {
 }
 
 export type RawObjOf<T> = {
-  // biome-ignore lint/complexity/noBannedTypes: If it's a fucntion, ignores it.
+  // biome-ignore lint/complexity/noBannedTypes: If it's a function, ignores it.
   [K in keyof T as T[K] extends Function ? never : K]: Readonly<
     T[K] extends Option<infer I>
       ? Nullable<I extends List<infer P> ? ReadonlyArray<RawObjOf<P>> : I>

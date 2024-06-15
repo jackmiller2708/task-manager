@@ -19,6 +19,11 @@ export class TaskService {
     this.repo$ = this._dbService.db$.pipe(map((db) => db.task), first());
   }
 
+  /**
+   * Retrieves all tasks from the repository and returns them as an Observable of an immutable list.
+   *
+   * @return An Observable that emits a list of tasks.
+   */  
   findAll(): Observable<List<ITask>> {
     return this.repo$.pipe(
       switchMap((repo) => from(repo.find().exec())),
@@ -26,6 +31,12 @@ export class TaskService {
     );
   }
 
+  /**
+   * Adds a new task to the repository.
+   *
+   * @param task - The task object to be added.
+   * @return An observable that emits the added task.
+   */
   add(task: ITask): Observable<ITask> {
     return this.repo$.pipe(
       switchMap((repo) => from(repo.insert({ ...task.toEntity() }))),
@@ -33,6 +44,12 @@ export class TaskService {
     );
   }
 
+  /**
+   * Updates a task by its ID.
+   *
+   * @param task - The task object to be updated.
+   * @return An observable that emits the updated task.
+   */
   update(task: ITask): Observable<ITask> {
     const { id, ...updateData } = task.toEntity();
 
@@ -43,6 +60,12 @@ export class TaskService {
     );
   }
 
+    /**
+   * Deletes a task by its ID.
+   *
+   * @param id - The ID of the task to be deleted.
+   * @return An observable that emits an option containing the deleted task, if it exists.
+   */
   delete(id: string): Observable<Option.Option<ITask>> {
     return this.repo$.pipe(
       switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: id } } }).exec())),
@@ -55,6 +78,12 @@ export class TaskService {
     );
   }
 
+  /**
+   * Deletes multiple tasks in bulk based on the provided task IDs.
+   *
+   * @param taskIds - The list of task IDs to be deleted.
+   * @return An observable that emits a list of deleted tasks.
+   */
   bulkDelete(taskIds: List<string>): Observable<List<ITask>> {
     return this.repo$.pipe(
       switchMap((repo) => from(repo.find({ selector: { $or: taskIds.map((id) => ({ id })).toArray() } }).remove())),
