@@ -15,7 +15,7 @@ Please keep in mind that this project in all of its entirety is for the purpose 
 
 ## Prerequisites
 
-Before jumping into the code there are a few requirements that is expected and assumed to already have to be able to understand what's going on since this is rather a somewhat advance topic:
+Before jumping into the code there are a few requirements that is expected to be able to understand what's going on since this is a rather somewhat advance topic:
 
 1. Intermediate understanding of functional programming, reactive programming and OOP;
 2. Intermediate knowledge of web development (JavaScript, HTML, CSS, ...);
