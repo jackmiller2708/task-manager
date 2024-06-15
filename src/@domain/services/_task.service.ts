@@ -51,10 +51,8 @@ export class TaskService {
    * @return An observable that emits the updated task.
    */
   update(task: ITask): Observable<ITask> {
-    const { id, ...updateData } = task.toEntity();
-
     return this.repo$.pipe(
-      switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: id }} }).patch(updateData))),
+      switchMap((repo) => from(repo.findOne({ selector: { id: { $eq: task.id }} }).patch(task.toEntity()))),
       map(Option.fromNullable),
       map(maybeDoc => maybeDoc.pipe(Option.map(doc => Task.fromEntity(doc.getLatest()._data)), Option.getOrThrow))
     );
