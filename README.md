@@ -1,5 +1,15 @@
 # Simple Task Manager
 
+### table of content
+- Introduction
+- Disclaimer
+- Prerequisites
+- Specifications
+- Structure
+- Setup
+- Running the dev server
+
+## Introduction
 This is a demo to showcase the implementations of various design patterns including:
 
 - Architectural: [N-layer](https://en.wikipedia.org/wiki/Multitier_architecture), [Flux](https://facebookarchive.github.io/flux/docs/in-depth-overview/);
