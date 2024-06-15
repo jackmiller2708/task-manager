@@ -59,7 +59,7 @@ Then are composed into a complete application in the `app` folder.
 
 ## Setup
 
-There are two ways you can set up the project: locally or via IDX (Recommended). This project is configured to be able to run on both environment but having it on IDX would cut off the hassle of manually cloning the project and installing dependencies which is why is recommended.
+There are two ways you can set up the project: __locally__ or via __IDX (Recommended)__. This project is configured to be able to run on both environments but having it on IDX would cut off the hassle of manually cloning the project and installing dependencies.
 
 ### With IDX
 
@@ -71,22 +71,22 @@ All you need to do is click the button:
   <img height="32" alt="Open in IDX" src="https://cdn.idx.dev/btn/open_dark_32.svg">
 </a>
 
-And follow the instructions and visual cues. That's it!! And the project is even started for you once it's done installing all the dependencies.
+And follow the instructions and visual cues. That's it!! The project is even automatically started for you once it's done installing all the dependencies.
 
 ### Locally
 
-This project is powered by [Bun](https://bun.sh/docs) so you'd need to install the latest version of Bun: [here](https://bun.sh/docs/installation). After installing Bun, all you need to do to set the project up is to run a single command:
+This project is powered by [Bun](https://bun.sh/docs) so you'd need to install the latest version of Bun: [here](https://bun.sh/docs/installation). After installing Bun, all you need to do to set the project up is to run a single command in the project's root folder:
 
 ```
 bun install
 ```
 This command will install all the required dependencies of the project without you lifting a finger.
 
-### Running the dev server
+## Running the dev server
 
-If you're setting the project up via IDX, you can skip this step since IDX is going to launch a preview which is using the dev server already. However you should know incase you need to start it manually. 
+If you're setting the project up via IDX, you can skip this step since IDX is going to automatically launch a project preview which it is using the dev server already. However you should know incase you need to start it manually. 
 
-To start the dev server, run the command:
+To start the dev server, in the project's root folder, run the command:
 ```
 bun start
 ```
