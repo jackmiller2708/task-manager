@@ -83,16 +83,16 @@ To set up the project via IDX click the button:
   <img height="32" alt="Open in IDX" src="https://cdn.idx.dev/btn/open_dark_32.svg">
 </a>
 
-And follow the instructions and visual cues. That's it!! The project will even be automatically started once it's done installing all the dependencies.
+And follow the instructions and visual cues. That's it!! The dev server will even be automatically started once it's done installing all project's dependencies.
 
 ### Locally
 
-This project is powered by [Bun](https://bun.sh/docs), the latest version could be found [here](https://bun.sh/docs/installation), or run
+This project is powered by [Bun](https://bun.sh/docs), the latest version can be found [here](https://bun.sh/docs/installation), or run
 
 ```
 bun upgrade
 ```
-to upgrade to the latest stable version. After installing Bun, to set the project up, run this command in the project's root folder:
+to upgrade to the latest stable version. After installing the latest version of Bun, to set the project up, run the below command in the project's root folder:
 
 ```
 bun install
@@ -101,7 +101,7 @@ This command will install all the required dependencies of the project.
 
 ## Running the dev server
 
-If the project is set up via IDX, this step can be skipped since IDX is going to automatically launch a project preview which it is using the dev server already. However, incase of manually project initiation is required follow the instruction below. 
+If the project is set up via IDX, this step can be skipped since IDX is going to automatically launch a project preview by using the dev server. However, incase of manually dev server initiation is required follow the instruction below. 
 
 To start the dev server, in the project's root folder, run the command:
 ```
