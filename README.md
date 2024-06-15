@@ -32,7 +32,7 @@ And for Flux design pattern to work, a state manager is required:
 
 - [NgRx](https://ngrx.io/docs) - an Angular based state manager similar to [Redux](https://redux.js.org/).
 
-It also depends on a plethora of other libraries to reduce code complexity and increase productivity:
+It also depends on a plethora of other libraries to hide code complexity and increase productivity:
 
  - Angular Material - Pre-made UI components
  - AgGrid - Pre-made datatable
@@ -71,7 +71,7 @@ bun start
 This will initiate the dev server at `port 4200`.
 
 ---
-<div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+<div align="center" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
   <div style="font-weight: medium; font-size: 1.3rem">
     Wanna give it a try? Click the button below:
   </div>
