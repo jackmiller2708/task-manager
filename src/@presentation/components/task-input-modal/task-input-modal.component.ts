@@ -1,6 +1,6 @@
 import type { IAppState } from '@presentation/interfaces';
 
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,16 +9,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
-// biome-ignore lint/style/useImportType: Need for injection
-import { TaskService } from '@application/services/task/task.service';
+// biome-ignore lint/style/useImportType: Needed for deps injection
+import { TaskService } from '@application/services';
 import { TaskActions } from '@presentation/stores';
 import { type ITask, Task } from '@application/models';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { DialogRef } from '@angular/cdk/dialog';
 import { PRIORITY } from '@application/constants';
 import { DateTime } from 'luxon';
 import { Option } from 'effect';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { Store } from '@ngrx/store';
 
 const imports = [

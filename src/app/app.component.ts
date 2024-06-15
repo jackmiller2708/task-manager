@@ -3,17 +3,17 @@ import type { ITask } from "@application/models";
 import type { List } from "immutable";
 
 import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } from "@presentation/components";
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { TaskInputModalComponent } from "@presentation/components/task-input-modal/task-input-modal.component";
 import { orchestrateBulkDelete } from "@presentation/utility";
 import { Map as ImmutableMap } from "immutable";
-// biome-ignore lint/style/useImportType: Need for injection
-import { TaskService } from "@application/services/task/task.service";
+// biome-ignore lint/style/useImportType: Needed for deps injection
+import { TaskService } from "@application/services";
 import { TaskActions } from "@presentation/stores";
 import { Component } from "@angular/core";
 import { Option } from "effect";
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { Store } from "@ngrx/store";
 import { map } from "rxjs";
 

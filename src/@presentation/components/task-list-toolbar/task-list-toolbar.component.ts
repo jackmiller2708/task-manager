@@ -3,14 +3,14 @@ import type { Observable } from 'rxjs';
 import type { IAppState } from '@presentation/interfaces';
 import type { ITask } from '@application/models';
 
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
 import { storeRegisterFactory } from '@presentation/utility';
 import { selectSelectedTasks } from '@presentation/stores';
 import { Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
 

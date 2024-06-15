@@ -5,7 +5,7 @@ import type { Observable } from 'rxjs';
 import type { IAppState } from '@presentation/interfaces';
 import type { ITask } from '@application/models';
 
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { TaskActions, selectTasks } from '@presentation/stores';
 import { storeRegisterFactory } from '@presentation/utility';
@@ -13,7 +13,7 @@ import { TASK_LIST_COL_DEFS } from '@presentation/constants';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Subject } from 'rxjs';
 import { List } from 'immutable';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { Store } from '@ngrx/store';
 
 @Component({

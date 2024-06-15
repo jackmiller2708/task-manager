@@ -1,7 +1,7 @@
 import type { ITask } from '@application/models';
 import type { List } from 'immutable';
 
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Component, Inject } from '@angular/core';
 import { Option } from 'effect';

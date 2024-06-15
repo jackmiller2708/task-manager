@@ -10,12 +10,12 @@ import { storeRegisterFactory } from '@presentation/utility';
 import { selectSelectedTasks } from '@presentation/stores';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { MatDialog } from '@angular/material/dialog';
 import { Component } from "@angular/core";
 import { Subject } from 'rxjs'
 import { Option } from 'effect';
-// biome-ignore lint/style/useImportType: Need for injection
+// biome-ignore lint/style/useImportType: Needed for deps injection
 import { Store } from '@ngrx/store';
 import { List } from 'immutable';
 

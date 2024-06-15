@@ -4,7 +4,7 @@ import type { RxCollection } from 'rxdb';
 import type { Observable } from 'rxjs';
 
 import {  first, from, map, of, switchMap } from 'rxjs';
-// biome-ignore lint/style/useImportType: Needed for token injection.
+// biome-ignore lint/style/useImportType: Needed for deps injection.
 import { DatabaseService } from '@core/services';
 import { Injectable } from '@angular/core';
 import { Option } from 'effect';
@@ -20,7 +20,7 @@ export class TaskService {
   }
 
   /**
-   * Retrieves all tasks from the repository and returns them as an Observable of an immutable list.
+   * Retrieves all tasks from the repository.
    *
    * @return An Observable that emits a list of tasks.
    */  
@@ -60,7 +60,7 @@ export class TaskService {
     );
   }
 
-    /**
+  /**
    * Deletes a task by its ID.
    *
    * @param id - The ID of the task to be deleted.

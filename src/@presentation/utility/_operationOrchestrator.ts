@@ -1,5 +1,5 @@
 import type { Observable, UnaryFunction } from "rxjs";
-import type { TaskService } from "@application/services/task/task.service";
+import type { TaskService } from "@application/services";
 
 import { map, pipe, switchMap } from "rxjs";
 import { Option } from "effect";
