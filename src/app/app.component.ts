@@ -6,7 +6,7 @@ import { ConfirmModalComponent, TaskListComponent, TaskListToolbarComponent } fr
 // biome-ignore lint/style/useImportType: Need for injection
 import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { TaskInputModalComponent } from "@presentation/components/task-input-modal/task-input-modal.component";
-import { orchestrateBulkDelete } from "@presentation/utitlity";
+import { orchestrateBulkDelete } from "@presentation/utility";
 import { Map as ImmutableMap } from "immutable";
 // biome-ignore lint/style/useImportType: Need for injection
 import { TaskService } from "@application/services/task/task.service";

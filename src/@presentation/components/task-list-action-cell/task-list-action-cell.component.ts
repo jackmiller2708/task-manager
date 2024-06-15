@@ -6,7 +6,7 @@ import type { IAppState } from '@presentation/interfaces';
 import type { ITask } from '@application/models';
 
 import { TaskInputModalComponent } from '../task-input-modal/task-input-modal.component';
-import { storeRegisterFactory } from '@presentation/utitlity';
+import { storeRegisterFactory } from '@presentation/utility';
 import { selectSelectedTasks } from '@presentation/stores';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';

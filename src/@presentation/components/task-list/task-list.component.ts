@@ -8,7 +8,7 @@ import type { ITask } from '@application/models';
 // biome-ignore lint/style/useImportType: Need for injection
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import { TaskActions, selectTasks } from '@presentation/stores';
-import { storeRegisterFactory } from '@presentation/utitlity';
+import { storeRegisterFactory } from '@presentation/utility';
 import { TASK_LIST_COL_DEFS } from '@presentation/constants';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Subject } from 'rxjs';

@@ -5,7 +5,7 @@ import type { ITask } from '@application/models';
 
 // biome-ignore lint/style/useImportType: Need for injection
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Output } from '@angular/core';
-import { storeRegisterFactory } from '@presentation/utitlity';
+import { storeRegisterFactory } from '@presentation/utility';
 import { selectSelectedTasks } from '@presentation/stores';
 import { Subject } from 'rxjs';
 import { MatButtonModule } from '@angular/material/button';
