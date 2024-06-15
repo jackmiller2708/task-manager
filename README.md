@@ -55,7 +55,7 @@ Based on the N-Layer architectural pattern, the project is divided into three la
 3. @presentation - The presentation
     - Contains the UI logic of the project: components, stores, UI constants, ...
 
-Then are composed into a complete application in the `app` folder.
+Each layer is dependent on the previous layer, respectively. Then are used to compose a complete application in the `app` folder.
 
 ## Setup
 
