@@ -1,13 +1,15 @@
 # Simple Task Manager
 
 ### table of content
-- Introduction
-- Disclaimer
-- Prerequisites
-- Specifications
-- Structure
-- Setup
-- Running the dev server
+- [Introduction](#introduction)
+- [Disclaimer](#disclaimer)
+- [Prerequisites](#prerequisites)
+- [Specifications](#specifications)
+- [Structure](#structure)
+- [Setup](#setup)
+  - [With IDX](#with-idx)
+  - [Locally](#locally)
+- [Running the dev server](#running-the-dev-server)
 
 ## Introduction
 This is a demo to showcase the implementations of various design patterns including:
