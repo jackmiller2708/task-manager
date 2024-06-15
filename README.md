@@ -83,7 +83,7 @@ To set up the project via IDX click the button:
   <img height="32" alt="Open in IDX" src="https://cdn.idx.dev/btn/open_dark_32.svg">
 </a>
 
-And follow the instructions and visual cues. That's it!! The dev server will even be automatically started once it's done installing all project's dependencies.
+And follow the instructions and visual cues. That's it!! The dev server will even be automatically started once it's done installing all project's dependencies at `port 4200`.
 
 ### Locally
 
