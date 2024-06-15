@@ -70,11 +70,11 @@ bun start
 ```
 This will initiate the dev server at `port 4200`.
 
----
 <div align="center" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
   <div style="font-weight: medium; font-size: 1.3rem">
     Wanna give it a try? Click the button below:
   </div>
+  <br/>
   <a href="https://idx.google.com/import?url=https%3A%2F%2Fgithub.com%2Fjackmiller2708%2Ftask-manager">
     <img height="32" alt="Open in IDX" src="https://cdn.idx.dev/btn/open_dark_32.svg">
   </a>
