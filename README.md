@@ -11,7 +11,7 @@ For the purpose of experimentation and analysis to have a better understanding o
 
 ## Disclaimer
 
-Please keep in mind that this project in all of its entirety is for the purpose of experimentation and analysis, it is by no means should be considered to be an example that should be used to follow as the understanding and implementation of some patterns if not all could be wrong.
+Please keep in mind that this project in all of its entirety is for the purpose of experimentation and analysis, it is by no means should be considered to be an example to follow as the understanding and implementation of some patterns if not all could be wrong.
 
 ## Prerequisites
 
