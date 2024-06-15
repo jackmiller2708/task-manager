@@ -2,7 +2,7 @@ import type { ApplicationConfig } from "@angular/core";
 
 import { provideLuxonDateAdapter } from "@angular/material-luxon-adapter";
 import { provideAnimations } from "@angular/platform-browser/animations";
-import { provideDatabase } from "@core/providers/database";
+import { provideDatabase } from "@core/providers";
 import { provideRouter } from "@angular/router";
 import { tasksReducer } from "@presentation/stores";
 import { provideStore } from "@ngrx/store";

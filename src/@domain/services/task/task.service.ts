@@ -5,7 +5,7 @@ import type { Observable } from 'rxjs';
 
 import {  first, from, map, of, switchMap } from 'rxjs';
 // biome-ignore lint/style/useImportType: Needed for token injection.
-import { DatabaseService } from '@core/services/database/database.service';
+import { DatabaseService } from '@core/services';
 import { Injectable } from '@angular/core';
 import { Option } from 'effect';
 import { Task } from '@application/models';
