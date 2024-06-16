@@ -14,7 +14,7 @@ import classNames from 'classnames';
   template: '<span [class]="priorityClass">{{ value }}</span>',
 })
 export class PriorityBadgeComponent implements ICellRendererAngularComp {
-  private readonly match: ReturnType<typeof _getPriorityMatcher>;
+  private readonly _match: ReturnType<typeof _getPriorityMatcher>;
   private _value?: PRIORITY;
 
   get priorityClass() {
@@ -27,13 +27,13 @@ export class PriorityBadgeComponent implements ICellRendererAngularComp {
 
   get value(): string | undefined {
     return Option.fromNullable(this._value).pipe(
-      Option.map((priority) => this.match({ priority })),
+      Option.map((priority) => this._match({ priority })),
       Option.getOrUndefined
     );
   }
 
   constructor() {
-    this.match = _getPriorityMatcher();
+    this._match = _getPriorityMatcher();
   }
 
   agInit(params: ICellRendererParams): void {

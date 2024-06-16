@@ -4,7 +4,7 @@ import type { ITask } from '@application/models';
 
 import { TaskListActionCellComponent } from '@presentation/components/task-list-action-cell/task-list-action-cell.component';
 import { PriorityBadgeComponent } from '@presentation/components/priority-badge/priority-badge.component';
-import { _getPriorityMatcher } from '@application/utility';
+import { StatusBadgeComponent } from '@presentation/components/status-badge/status-badge.component';
 
 export const TASK_LIST_COL_DEFS: ColDef<ITask>[] = [
   {
@@ -38,6 +38,13 @@ export const TASK_LIST_COL_DEFS: ColDef<ITask>[] = [
     resizable: false,
     cellClass: 'flex flex-col justify-center',
     valueFormatter: ({ value }) => (value as DateTime).toFormat('DD'),
+  },
+  {
+    field: 'status',
+    resizable: false,
+    headerClass: '[&_.ag-header-cell-label]:justify-center',
+    cellClass: 'flex flex-col justify-center text-center',
+    cellRenderer: StatusBadgeComponent
   },
   {
     headerName: 'Actions',
