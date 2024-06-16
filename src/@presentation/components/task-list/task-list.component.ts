@@ -41,9 +41,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
   ) {
     this._onDestroy$ = new Subject();
     this._tasks$ = this._store.select(selectTasks);
+    this._dataSource = [];
 
     this.colDefs = TASK_LIST_COL_DEFS;
-    this._dataSource = [];
   }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
-import type { RxJsonSchema } from "rxdb";
+import type { RxCollectionCreator } from "rxdb";
 
 export type EntitySchemas<T> = {
-  [K in keyof T as T[K] extends RxJsonSchema<unknown>
+  [K in keyof T as T[K] extends RxCollectionCreator<unknown>
     ? K
-    : never]: T[K] extends RxJsonSchema<infer I> ? RxJsonSchema<I> : never;
+    : never]: T[K] extends RxCollectionCreator<infer I> ? RxCollectionCreator<I> : never;
 };

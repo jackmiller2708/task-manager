@@ -1,8 +1,8 @@
-import type { ConstructableValuesOf, RawObjOf } from '@core/interfaces';
-import type { ITask, ITaskEntity } from './_ITask.interface';
+import type { ConstructableValuesOf, RawObjOf } from "@core/interfaces";
+import type { ITask, ITaskEntity } from "./_ITask.interface";
 
-import { PRIORITY } from '@application/constants';
-import { DateTime } from 'luxon';
+import { PRIORITY, STATUS } from "@application/constants";
+import { DateTime } from "luxon";
 
 export class Task implements ITask {
   readonly id: string;
@@ -11,14 +11,16 @@ export class Task implements ITask {
   readonly dueDate: DateTime;
   readonly createdTime: DateTime;
   readonly priority: PRIORITY;
+  readonly status: STATUS;
 
   constructor(values?: ConstructableValuesOf<ITask>) {
     this.id = values?.id ?? Date.now().toString();
-    this.title = values?.title ?? '';
-    this.description = values?.description ?? '';
+    this.title = values?.title ?? "";
+    this.description = values?.description ?? "";
     this.dueDate = values?.dueDate ?? DateTime.now();
     this.createdTime = values?.createdTime ?? DateTime.now();
     this.priority = values?.priority ?? PRIORITY.MEDIUM;
+    this.status = values?.status ?? STATUS.OPEN;
   }
 
   static fromEntity(values?: Partial<Readonly<RawObjOf<ITaskEntity>>>) {
