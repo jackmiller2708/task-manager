@@ -14,7 +14,7 @@
 ## Introduction
 This is a demo to showcase the implementations of various design patterns including:
 
-- Architectural: [N-layer](https://en.wikipedia.org/wiki/Multitier_architecture), [Flux](https://facebookarchive.github.io/flux/docs/in-depth-overview/);
+- Architectural: [N-layer](https://en.wikipedia.org/wiki/Multitier_architecture), [Flux](https://facebookarchive.github.io/flux/docs/in-depth-overview/), [Repository](https://www.geeksforgeeks.org/repository-design-pattern/);
 - Structural: [Adaptor](https://refactoring.guru/design-patterns/adapter);
 - Behavioral: [Memento](https://refactoring.guru/design-patterns/memento);
 - Creational: [Factory Method](https://refactoring.guru/design-patterns/factory-method).
@@ -62,8 +62,9 @@ Based on the N-Layer architectural pattern, the project is divided into three la
 
 1. @core - The core layer
     - Contains the core mechanism of the project: data access, utility interfaces, services, ...
-2. @domain/application - The application layer
-    - Contains the business logic of the project: domain services, app services, entities, models, app constants, ...
+2. @domain/application - The domain/application layer
+    - This layer is a combination of both domain and application layer for the sake of simplicity
+    - Contains the domain and business logic: domain services, repositories, entities, app services, ...
 3. @presentation - The presentation
     - Contains the UI logic of the project: components, stores, UI constants, ...
 
