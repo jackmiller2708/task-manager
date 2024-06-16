@@ -24,17 +24,30 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Due date</mat-label>
-      <input required matInput [matDatepicker]="picker" formControlName="dueDate">
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
+      <mat-label>Status</mat-label>
+      <mat-select required formControlName="status">
+        <mat-option [value]="0">Open</mat-option>
+        <mat-option [value]="1">In Progress</mat-option>
+        <mat-option [value]="2">Done</mat-option>
+      </mat-select>
 
-      @if (form.controls.dueDate.invalid) {
-        <mat-error>Due date is required</mat-error>
+      @if (form.controls.status.invalid) {
+        <mat-error>Status is required</mat-error>
       }
     </mat-form-field>
   </div>
+
+  <mat-form-field>
+    <mat-label>Due date</mat-label>
+    <input required matInput [matDatepicker]="picker" formControlName="dueDate">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+
+    @if (form.controls.dueDate.invalid) {
+      <mat-error>Due date is required</mat-error>
+    }
+  </mat-form-field>
 
   <mat-form-field>
     <mat-label>Description (optional)</mat-label>
@@ -45,7 +58,7 @@
     <button mat-flat-button color="primary" aria-label="Submit Button" type="submit">
       Submit
     </button>
-    <button mat-stroked-button color="warn" aria-label="Cancel Button" type="button">
+    <button mat-stroked-button color="warn" aria-label="Cancel Button" type="button" (click)="onCancelBtnClick()">
       Cancel
     </button>
   </div>

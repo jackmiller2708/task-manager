@@ -15,7 +15,7 @@ import { TaskActions } from '@presentation/stores';
 import { type ITask, Task } from '@application/models';
 // biome-ignore lint/style/useImportType: Needed for deps injection
 import { DialogRef } from '@angular/cdk/dialog';
-import { PRIORITY } from '@application/constants';
+import { PRIORITY, STATUS } from '@application/constants';
 import { DateTime } from 'luxon';
 import { Option } from 'effect';
 // biome-ignore lint/style/useImportType: Needed for deps injection
@@ -76,6 +76,10 @@ export class TaskInputModalComponent {
     });
   }
 
+  onCancelBtnClick() {
+    this._dialogRef.close();
+  }
+
   private _submit(formValue: Partial<ITask>) {
     return Option.match(this._data, {
       onSome: (data) => this._taskService.update(new Task(({ ...data, ...formValue }))),
@@ -85,17 +89,19 @@ export class TaskInputModalComponent {
 
   private _initForm(initData: Option.Option<ITask>) {
     return this._formBuilder.group(Option.match(initData, {
-      onSome: ({ title, description, dueDate, priority }) => ({
+      onSome: ({ title, description, dueDate, priority, status }) => ({
         title: [title, [Validators.required]],
         description: [description],
         dueDate: [dueDate],
         priority: [priority, [Validators.required]],
+        status: [status, [Validators.required]],
       }),
       onNone: () => ({
         title: ['', [Validators.required]],
         description: [''],
         dueDate: [DateTime.now().endOf('day'), [Validators.required]],
         priority: [PRIORITY.MEDIUM, [Validators.required]],
+        status: [{ value: STATUS.OPEN, disabled: true }, [Validators.required]],
       }),
     }));
   }
